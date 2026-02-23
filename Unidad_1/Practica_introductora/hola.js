@@ -22,4 +22,4 @@ if (paisesdisponible.indexOf(paisdestino) > -1) {
   }
 } else {
   console.log(`No se puede vender el pasaje`);
-}
+}  
