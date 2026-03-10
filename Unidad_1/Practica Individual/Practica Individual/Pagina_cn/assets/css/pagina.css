@@ -1,0 +1,91 @@
+/* ===== HERO / PAGINA ===== */
+.pagina {
+    min-height: 100vh;
+    background-color: var(--color-dark);
+    background-image: url('../img/port1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+
+    /* Flexbox */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+}
+
+/* Overlay oscuro sobre la imagen */
+.pagina::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(13, 27, 42, 0.7) 0%,
+        rgba(13, 27, 42, 0.4) 60%,
+        rgba(13, 27, 42, 0.75) 100%
+    );
+}
+
+.pagina__titulo,
+.pagina__desc,
+.pagina__boton {
+    position: relative; /* sobre el overlay */
+}
+
+.pagina__titulo {
+    font-family: var(--font-main);
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-white);
+    margin-bottom: 1.25rem;
+    line-height: 1.1;
+}
+
+.pagina__desc {
+    font-family: var(--font-main);
+    font-size: clamp(0.95rem, 2vw, 1.2rem);
+    font-weight: 400;
+    color: rgba(255,255,255,0.8);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+}
+
+.pagina__boton {
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-white);
+    background-color: var(--color-accent);
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    border: 2px solid var(--color-accent);
+    transition: background-color var(--transition), color var(--transition), transform var(--transition);
+}
+
+.pagina__boton:hover {
+    background-color: transparent;
+    color: var(--color-accent);
+    transform: translateY(-3px);
+}
+
+/* ===== RESPONSIVE HERO ===== */
+@media screen and (max-width: 480px) {
+    .pagina {
+        padding: 5rem 1.25rem 3rem;
+        min-height: 90vh;
+    }
+
+    .pagina__boton {
+        width: 100%;
+        text-align: center;
+    }
+}
