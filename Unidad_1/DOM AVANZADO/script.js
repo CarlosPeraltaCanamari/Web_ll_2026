@@ -148,12 +148,72 @@
             });
         };
 
-        // ✅ exponemos update para que tabla pueda llamarlo
+
         return { update };
     })();
 
-    // ── CONEXIÓN PRINCIPAL ───────────────────────────────────────
+
+    const api = (() => {
+        const url = "http://localhost:3001/posts";
+
+        const getPosts = async () => {
+            try {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error("Error fetching posts");
+                const posts = await res.json();
+
+                posts.forEach((post) => {
+                    const datos = {
+                        task: post.titulo || "Sin título",
+                        description: post.descripcion || post.descipcion || "Sin descripción",
+                        date: post.fecha ? post.fecha.split('T')[0] : "",
+                        priority: "Normal",
+                        category: "General",
+                        responsable: "No asignado",
+                        estado: "Pendiente"
+                    };
+                    tabla.addTask(datos);
+                });
+            } catch (err) {
+                console.warn("No se pudo conectar a json-server en " + url, err);
+            }
+        };
+
+        const createPost = async (datos) => {
+            // Ejemplo de cómo agregar a la API (POST)
+            let fechaValidada = new Date().toISOString();
+            if (datos.date) {
+                try {
+                    fechaValidada = new Date(datos.date).toISOString();
+                } catch (e) {
+                    console.warn("Fecha inválida, usando fecha actual");
+                }
+            }
+
+            const postBody = {
+                titulo: datos.task,
+                descripcion: datos.description,
+                fecha: fechaValidada
+            };
+
+            try {
+                await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(postBody)
+                });
+            } catch (err) {
+                console.error("Error al guardar en la API:", err);
+            }
+        };
+
+        return { getPosts, createPost };
+    })();
+
+    api.getPosts();
+
     form.setDatos((datos) => {
         tabla.addTask(datos);
+        api.createPost(datos);
     });
 })();
