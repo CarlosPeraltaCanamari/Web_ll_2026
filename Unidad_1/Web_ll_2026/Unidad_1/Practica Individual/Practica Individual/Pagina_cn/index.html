@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/head.css">
+    <link rel="stylesheet" href="assets/css/pagina.css">
+    <link rel="stylesheet" href="assets/css/elemento.css">
+    <link rel="stylesheet" href="assets/css/mensaje.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="head">
+        <img class="head__logo" src="assets/img/logo.png" alt="Logo">
+
+        <button class="head__toggle" id="menuToggle" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="head__nav" id="mainNav">
+            <ul>
+                <li class="head__link"><a href="#">Inicio</a></li>
+                <li class="head__link"><a href="#">Portada</a></li>
+                <li class="head__link"><a href="#">Sección 1</a></li>
+                <li class="head__link"><a href="#">Sección 2</a></li>
+                <li class="head__link"><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- HERO -->
+        <section class="pagina">
+            <h1 class="pagina__titulo">Título de mi página</h1>
+            <p class="pagina__desc">Descripción de mi página web con información relevante para el visitante.</p>
+            <a class="pagina__boton" href="#">Ver más información</a>
+        </section>
+
+        <!-- ELEMENTO DESTACADO -->
+        <section class="elemento">
+            <h2 class="elemento__titulo">Elemento Destacado</h2>
+            <a href="#">
+                <figure class="elemento__figura">
+                    <img class="elemento__figura--imagen" src="assets/img/prod1.jpg" alt="Producto destacado">
+                    <figcaption class="elemento__figura--texto">Texto descriptivo de la figura</figcaption>
+                </figure>
+            </a>
+            <a class="elemento__boton" href="#">Ver detalles</a>
+        </section>
+
+        <!-- MENSAJES / FEATURES -->
+        <section class="mensaje">
+            <ul class="mensaje__lista">
+                <li class="mensaje__item">
+                    <span class="mensaje__item__icono">📦</span>
+                    <h2 class="mensaje__item__titulo">Mensaje 1</h2>
+                    <p class="mensaje__item__texto">Texto descriptivo del primer mensaje con información relevante sobre el servicio o producto.</p>
+                </li>
+                <li class="mensaje__item">
+                    <span class="mensaje__item__icono">🚀</span>
+                    <h2 class="mensaje__item__titulo">Mensaje 2</h2>
+                    <p class="mensaje__item__texto">Texto descriptivo del segundo mensaje con información relevante sobre el servicio o producto.</p>
+                </li>
+                <li class="mensaje__item">
+                    <span class="mensaje__item__icono">⭐</span>
+                    <h2 class="mensaje__item__titulo">Mensaje 3</h2>
+                    <p class="mensaje__item__texto">Texto descriptivo del tercer mensaje con información relevante sobre el servicio o producto.</p>
+                </li>
+            </ul>
+        </section>
+
+        <!-- SOBRE NOSOTROS -->
+        <section class="nosotros">
+            <div class="nosotros__contenido">
+                <h2 class="nosotros__titulo">Sobre Nosotros</h2>
+                <p class="nosotros__texto">Mensaje sobre nosotros. Aquí va información sobre la empresa, su misión, visión y los valores que los representan. Este texto puede extenderse para dar más contexto al visitante.</p>
+            </div>
+            <img class="nosotros__imagen" src="assets/img/perfil1.jpg" alt="Nuestro equipo">
+        </section>
+
+        <!-- PRODUCTOS -->
+        <section class="producto">
+            <h2 class="producto__titulo">Nuestros Productos</h2>
+            <ul class="producto__card">
+                <li class="card">
+                    <div class="card__banner"></div>
+                    <h3 class="card__titulo">Producto 1</h3>
+                    <article class="card__contenido">
+                        <p class="card__precio">$0004</p>
+                        <p class="card__desc">Descripción del producto con detalles sobre sus características y beneficios principales.</p>
+                        <a class="card__boton" href="#">Comprar ahora</a>
+                    </article>
+                </li>
+                <li class="card">
+                    <div class="card__banner"></div>
+                    <h3 class="card__titulo">Producto 2</h3>
+                    <article class="card__contenido">
+                        <p class="card__precio">$0004</p>
+                        <p class="card__desc">Descripción del producto con detalles sobre sus características y beneficios principales.</p>
+                        <a class="card__boton" href="#">Comprar ahora</a>
+                    </article>
+                </li>
+                <li class="card">
+                    <div class="card__banner"></div>
+                    <h3 class="card__titulo">Producto 3</h3>
+                    <article class="card__contenido">
+                        <p class="card__precio">$0004</p>
+                        <p class="card__desc">Descripción del producto con detalles sobre sus características y beneficios principales.</p>
+                        <a class="card__boton" href="#">Comprar ahora</a>
+                    </article>
+                </li>
+            </ul>
+        </section>
+
+        <!-- CONTACTO -->
+        <section class="contacto">
+            <div class="contacto__contenido">
+                <h2 class="contacto__titulo">Contacto</h2>
+                <p class="contacto__descripcion">Descripción de contacto. No dudes en escribirnos para resolver cualquier duda o consulta.</p>
+            </div>
+            <img class="contacto__imagen" src="assets/img/prod3.jpg" alt="Contacto">
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <img class="footer__logo" src="assets/img/logo.png" alt="Logo">
+        <nav class="footer__nav">
+            <ul>
+                <li class="footer__link"><a href="#">Inicio</a></li>
+                <li class="footer__link"><a href="#">Portada</a></li>
+                <li class="footer__link"><a href="#">Sección 1</a></li>
+                <li class="footer__link"><a href="#">Sección 2</a></li>
+                <li class="footer__link"><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+        <p class="footer__copy">© 2026 Mi Página · Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Menú hamburguesa móvil
+        const toggle = document.getElementById('menuToggle');
+        const nav    = document.getElementById('mainNav');
+        toggle.addEventListener('click', () => {
+            nav.classList.toggle('is-open');
+        });
+    </script>
+
+</body>
+</html>

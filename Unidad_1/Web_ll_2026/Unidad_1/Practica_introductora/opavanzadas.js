@@ -1,0 +1,12 @@
+const ciudades= new Array("Buenos Aires", "Madrid", "Lima", "Santiago");
+const paises = ["Bolivia", "Peru", "Colombia", "Ecuador"];
+let conteoCiudades = ciudades.length;
+console.log(`el numero de ciudades es ${conteoCiudades}`);
+let conteoPaises = paises.length;
+console.log(`el numero de paises es ${conteoPaises}`);
+ciudades.shift();
+console.log(ciudades);
+ciudades.pop();
+console.log(ciudades);
+console.log(paises.join("-"));
+console.log(paises.sort());

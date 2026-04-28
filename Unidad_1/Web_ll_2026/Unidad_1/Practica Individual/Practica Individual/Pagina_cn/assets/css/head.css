@@ -1,0 +1,192 @@
+/* ===== VARIABLES ===== */
+:root {
+    --color-dark:    #0d1b2a;
+    --color-accent:  #e63946;
+    --color-light:   #f1faee;
+    --color-mid:     #457b9d;
+    --color-white:   #ffffff;
+    --font-main:     'Montserrat', sans-serif;
+    --shadow:        0 2px 12px rgba(0,0,0,0.12);
+    --radius:        8px;
+    --transition:    0.25s ease;
+}
+
+/* ===== HEADER ===== */
+.head {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: var(--color-dark);
+    border-bottom: 3px solid var(--color-accent);
+    box-shadow: var(--shadow);
+
+    /* Flexbox */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.75rem 2rem;
+}
+
+.head__logo {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.head__nav {
+    display: flex;
+    align-items: center;
+}
+
+.head__nav ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.head__link a {
+    font-family: var(--font-main);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-light);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    display: block;
+    transition: background-color var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.head__link a:hover {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-white);
+}
+
+/* ===== HAMBURGER (móvil) ===== */
+.head__toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+.head__toggle span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background-color: var(--color-light);
+    border-radius: 2px;
+    transition: transform var(--transition), opacity var(--transition);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background-color: var(--color-dark);
+    border-top: 3px solid var(--color-accent);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+}
+
+.footer__logo {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.footer__nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.footer__link a {
+    font-family: var(--font-main);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius);
+    display: block;
+    transition: color var(--transition), background-color var(--transition);
+}
+
+.footer__link a:hover {
+    color: var(--color-white);
+    background-color: rgba(255,255,255,0.08);
+}
+
+.footer__copy {
+    width: 100%;
+    text-align: center;
+    font-family: var(--font-main);
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.3);
+    margin-top: 0.5rem;
+}
+
+/* ===== RESPONSIVE HEADER ===== */
+@media screen and (max-width: 768px) {
+    .head {
+        padding: 0.75rem 1.25rem;
+    }
+
+    .head__toggle {
+        display: flex;
+    }
+
+    .head__nav {
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+    }
+
+    .head__nav.is-open {
+        max-height: 500px;
+    }
+
+    .head__nav ul {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        padding: 0.5rem 0;
+    }
+
+    .head__link a {
+        text-align: center;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer__nav ul {
+        justify-content: center;
+    }
+}

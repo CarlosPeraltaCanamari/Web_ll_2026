@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Tienda | Productos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/flexbox.css">
+    <link rel="stylesheet" href="css/video.css">
+<body>
+
+    <!-- HEADER -->
+    <header class="headerPrincipal">
+        <div class="container">
+            <h1 class="headerPrincipal-titulo">
+                <a href="#">Mi Tienda</a>
+            </h1>
+            <nav class="headerPrincipal-nav">
+                <a class="headerPrincipal-nav-link" href="#">Inicio</a>
+                <a class="headerPrincipal-nav-link" href="#">Productos</a>
+                <a class="headerPrincipal-nav-link" href="#">Nosotros</a>
+                <a class="headerPrincipal-nav-link" href="#">Contacto</a>
+                <a class="headerPrincipal-nav-link headerPrincipal-nav-link-app" href="#">Ir a la App</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="contenidoPrincipal">
+        <div class="container">
+            <h2 class="subtitulo">Nuestros Productos</h2>
+            <nav>
+                <ul class="contenidoPrincipal-productos">
+                    <li class="contenidoPrincipal-productos-link"><a href="#">Ropa</a></li>
+                    <li class="contenidoPrincipal-productos-link"><a href="#">Zapatos</a></li>
+                    <li class="contenidoPrincipal-productos-link"><a href="#">Accesorios</a></li>
+                    <li class="contenidoPrincipal-productos-link"><a href="#">Ropa</a></li>
+                    <li class="contenidoPrincipal-productos-link"><a href="#">Zapatos</a></li>
+                    <li class="contenidoPrincipal-productos-link"><a href="#">Accesorios</a></li>
+                    <li class="contenidoPrincipal-productos-link"><a href="#">Ropa</a></li>
+                    <li class="contenidoPrincipal-productos-link"><a href="#">Zapatos</a></li>
+                    <li class="contenidoPrincipal-productos-link"><a href="#">Accesorios</a></li>
+                    <li class="contenidoPrincipal-productos-link"><a href="#">Ropa</a></li>
+                    <li class="contenidoPrincipal-productos-link"><a href="#">Zapatos</a></li>
+                    <li class="contenidoPrincipal-productos-link"><a href="#">Accesorios</a></li>
+                    <li class="contenidoPrincipal-productos-link"><a href="#">Ropa</a></li>
+                    <li class="contenidoPrincipal-productos-link"><a href="#">Zapatos</a></li>
+                    <li class="contenidoPrincipal-productos-link"><a href="#">Accesorios</a></li>
+                    <li class="contenidoPrincipal-productos-link"><a href="#">Ropa</a></li>
+                    <li class="contenidoPrincipal-productos-link"><a href="#">Zapatos</a></li>
+                    <li class="contenidoPrincipal-productos-link"><a href="#">Accesorios</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- ===== VIDEO + SOBRE ===== -->
+        <section class="videoSobre">
+            <div class="container">
+
+                <div class="videoSobre-video-wrap">
+                    <div class="local-player" id="localPlayer">
+
+                        <div class="local-player__empty" id="playerEmpty">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M15 10l4.553-2.276A1 1 0 0121 8.723v6.554a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
+                            </svg>
+                            <p class="local-player__empty-text">Selecciona un video de tu dispositivo</p>
+                            <label class="local-player__upload-btn" for="videoInput">
+                                📁 Elegir video
+                            </label>
+                            <p class="local-player__formats">MP4, WebM, MOV, AVI</p>
+                        </div>
+
+                        <video class="local-player__video" id="videoElement" controls hidden></video>
+
+                        <button class="local-player__change" id="changeBtn" hidden>↺ Cambiar video</button>
+
+                        <input type="file" id="videoInput" accept="video/*" hidden>
+                    </div>
+                </div>
+
+                <div class="videoSobre-sobre">
+                    <h2 class="videoSobre-sobre-title">Ventajas de Mi Tienda</h2>
+                    <ul class="videoSobre-sobre-list">
+                        <li class="videoSobre-sobre-item">Compra los productos donde quieras y cuando quieras</li>
+                        <li class="videoSobre-sobre-item">Nuevas colecciones cada temporada</li>
+                        <li class="videoSobre-sobre-item">Moda actual de las mejores marcas</li>
+                    </ul>
+                    <button class="videoSobre-button">Comprar ahora</button>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="rodapePrincipal">
+        <div class="container">
+
+            <!-- MARCAS en 4 columnas -->
+            <section class="rodapePrincipal-navMap">
+                <h3 class="subtitulo">Nuestras Marcas</h3>
+                <div class="marcas-grid">
+
+                    <div class="marca-col">
+                        <h4 class="marca-col__titulo marca-col__titulo--polo">POLO</h4>
+                        <a class="marca-col__link" href="#">Ropa</a>
+                        <a class="marca-col__link" href="#">Zapatos</a>
+                        <a class="marca-col__link" href="#">Accesorios</a>
+                        <a class="marca-col__link" href="#">Colecciones</a>
+                        <a class="marca-col__link" href="#">Ofertas</a>
+                    </div>
+
+                    <div class="marca-col">
+                        <h4 class="marca-col__titulo marca-col__titulo--adidas">Adidas</h4>
+                        <a class="marca-col__link" href="#">Ropa</a>
+                        <a class="marca-col__link" href="#">Zapatos</a>
+                        <a class="marca-col__link" href="#">Accesorios</a>
+                        <a class="marca-col__link" href="#">Colecciones</a>
+                        <a class="marca-col__link" href="#">Ofertas</a>
+                    </div>
+
+                    <div class="marca-col">
+                        <h4 class="marca-col__titulo marca-col__titulo--nike">NIKE</h4>
+                        <a class="marca-col__link" href="#">Ropa</a>
+                        <a class="marca-col__link" href="#">Zapatos</a>
+                        <a class="marca-col__link" href="#">Accesorios</a>
+                        <a class="marca-col__link" href="#">Colecciones</a>
+                        <a class="marca-col__link" href="#">Ofertas</a>
+                    </div>
+
+                    <div class="marca-col">
+                        <h4 class="marca-col__titulo marca-col__titulo--zara">ZARA</h4>
+                        <a class="marca-col__link" href="#">Ropa</a>
+                        <a class="marca-col__link" href="#">Zapatos</a>
+                        <a class="marca-col__link" href="#">Accesorios</a>
+                        <a class="marca-col__link" href="#">Colecciones</a>
+                        <a class="marca-col__link" href="#">Ofertas</a>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+
+        <!-- PATROCINADORES + FORMULARIO -->
+        <section class="rodapePrincipal-patrocinadores">
+            <div class="container">
+                <ul class="rodapePrincipal-patrocinadores-list">
+                    <li><a class="rodapePrincipal-patrocinadores-list-link" href="#"><img src="img/logos/adidas.svg" width="60" alt="Adidas"></a></li>
+                    <li><a class="rodapePrincipal-patrocinadores-list-link" href="#"><img src="img/logos/nike.svg"   width="60" alt="Nike"></a></li>
+                    <li><a class="rodapePrincipal-patrocinadores-list-link" href="#"><img src="img/logos/polo.svg"   width="60" alt="Polo"></a></li>
+                    <li><a class="rodapePrincipal-patrocinadores-list-link" href="#"><img src="img/logos/zara.svg"   width="60" alt="Zara"></a></li>
+                </ul>
+                <form class="rodapePrincipal-contatoForm" action="#">
+                    <fieldset>
+                        <legend class="rodapePrincipal-contatoForm-legend">¿Quieres más info?</legend>
+                        <div class="rodapePrincipal-contatoForm-fieldset">
+                            <input class="rodapePrincipal-contatoForm-emailInput" type="email" placeholder="tu@email.com">
+                            <button class="rodapePrincipal-contatoForm-submit" type="submit">Enviar</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+    </footer>
+
+    <script>
+        const videoInput = document.getElementById('videoInput');
+        const videoElement = document.getElementById('videoElement');
+        const playerEmpty = document.getElementById('playerEmpty');
+        const changeBtn   = document.getElementById('changeBtn');
+
+        // Abrir selector al hacer clic en el botón cambiar
+        changeBtn.addEventListener('click', () => videoInput.click());
+
+        // Cuando se selecciona un archivo
+        videoInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (!file) return;
+
+            // Liberar URL anterior si existe
+            if (videoElement.src) URL.revokeObjectURL(videoElement.src);
+
+            videoElement.src = URL.createObjectURL(file);
+            videoElement.hidden = false;
+            playerEmpty.hidden  = true;
+            changeBtn.hidden    = false;
+            videoElement.play();
+        });
+    </script>
+
+</body>
+</html>

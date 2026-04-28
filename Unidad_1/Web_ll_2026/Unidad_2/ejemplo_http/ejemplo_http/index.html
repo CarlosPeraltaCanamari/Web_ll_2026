@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Local Server</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Dosis&family=Open+Sans&family=Parisienne&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <main>
+    <div class="container">
+        <header>
+            <h1>CRUD Local Server</h1>
+        </header>
+
+        <!-- GET -->
+        <div class="controls">
+            <button class="btn btn-get" onclick="getData()">
+                <i class="fas fa-download"></i> Obtener Posts (GET)
+            </button>
+        </div>
+
+        <!-- POST -->
+        <div class="form-card">
+            <h3><i class="fas fa-plus-circle"></i> Crear Post (POST)</h3>
+            <div class="form-group">
+                <label for="inputTitulo">Título</label>
+                <input type="text" id="inputTitulo" placeholder="Título del post..." maxlength="100" />
+            </div>
+            <div class="form-group">
+                <label for="inputDescripcion">Descripción</label>
+                <textarea id="inputDescripcion" rows="3" placeholder="Descripción del post..." maxlength="300"></textarea>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-post" onclick="postData()">
+                    <i class="fas fa-paper-plane"></i> Enviar
+                </button>
+                <button class="btn btn-limpiar" onclick="limpiarFormulario()">
+                    <i class="fas fa-eraser"></i> Limpiar
+                </button>
+            </div>
+        </div>
+
+        <!-- PUT -->
+        <div class="form-card">
+            <h3><i class="fas fa-edit"></i> Actualizar Post (PUT)</h3>
+            <div class="form-group">
+                <label for="inputPutId">ID del post</label>
+                <input type="text" id="inputPutId" placeholder="ID del post a actualizar..." />
+            </div>
+            <div class="form-group">
+                <label for="inputPutTitulo">Nuevo título</label>
+                <input type="text" id="inputPutTitulo" placeholder="Nuevo título..." maxlength="100" />
+            </div>
+            <div class="form-group">
+                <label for="inputPutDescripcion">Nueva descripción</label>
+                <textarea id="inputPutDescripcion" rows="3" placeholder="Nueva descripción..." maxlength="300"></textarea>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-put" onclick="putData()">
+                    <i class="fas fa-sync-alt"></i> Actualizar
+                </button>
+            </div>
+        </div>
+
+        <!-- DELETE -->
+        <div class="form-card">
+            <h3><i class="fas fa-trash-alt"></i> Eliminar Post (DELETE)</h3>
+            <div class="form-group">
+                <label for="inputDeleteId">ID del post</label>
+                <input type="text" id="inputDeleteId" placeholder="ID del post a eliminar..." />
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-delete" onclick="deleteData()">
+                    <i class="fas fa-trash"></i> Eliminar
+                </button>
+            </div>
+        </div>
+
+        <!-- Resultados -->
+        <div class="results">
+            <h3>Resultados:</h3>
+            <div id="status"></div>
+            <pre id="result">RESULTADO..</pre>
+        </div>
+    </div>
+
+    <script src="js/get.js"></script>
+    <script src="js/post.js"></script>
+    <script src="js/put.js"></script>
+    <script src="js/delete.js"></script>
+
+    <script>
+        function showResult(data, isError = false) {
+            const statusEl = document.getElementById('status');
+            const resultEl = document.getElementById('result');
+
+            if (isError) {
+                statusEl.innerHTML = '<div class="status status-error">Error en la operación</div>';
+                resultEl.textContent = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+            } else {
+                statusEl.innerHTML = '<div class="status status-success">Operación exitosa</div>';
+                resultEl.textContent = JSON.stringify(data, null, 2);
+            }
+        }
+
+        function limpiarFormulario() {
+            document.getElementById('inputTitulo').value = '';
+            document.getElementById('inputDescripcion').value = '';
+        }
+    </script>
+    </main>
+</body>
+</html>

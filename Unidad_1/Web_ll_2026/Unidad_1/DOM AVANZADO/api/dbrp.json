@@ -1,0 +1,53 @@
+{
+  "posts": [
+    {
+      "titulo": "nuevo post",
+      "descipcion": "es un nuevo post creado",
+      "fecha": "2026-03-23T13:41:01.421Z",
+      "id": "XqpkG8JEoUY"
+    },
+    {
+      "titulo": "nuevo post",
+      "descipcion": "es un nuevo post creado",
+      "fecha": "2026-03-23T13:41:21.651Z",
+      "id": "DPkkFvl1rew"
+    },
+    {
+      "titulo": "nuevo post",
+      "descipcion": "es un nuevo post creado",
+      "fecha": "2026-03-23T13:41:49.035Z",
+      "id": "WHE3-Qblkxs"
+    },
+    {
+      "titulo": "nuevo post",
+      "descipcion": "es un nuevo post creado",
+      "fecha": "2026-03-23T14:09:48.434Z",
+      "id": "dEmnVrGZydc"
+    },
+    {
+      "titulo": "nuevo post",
+      "descipcion": "es un nuevo post creado",
+      "fecha": "2026-03-23T14:10:18.321Z",
+      "id": "jCbZSrmUwQU"
+    },
+    {
+      "titulo": "Carlos",
+      "descripcion": "Hola Mundo",
+      "fecha": "2026-03-23T14:20:20.365Z",
+      "id": "Sf4DGheY33k"
+    },
+    {
+      "titulo": "Pedro",
+      "descripcion": "Bedrock",
+      "fecha": "2026-04-11T00:00:00.000Z",
+      "id": "kuZOJysL0WA"
+    },
+    {
+      "titulo": "Max",
+      "descripcion": "Verstappen",
+      "fecha": "2026-04-25T00:00:00.000Z",
+      "id": "liKr3b8ZPCE"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

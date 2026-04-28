@@ -1,0 +1,59 @@
+{
+  "perfil": [
+    {
+      "nombre": "FULANITO",
+      "email": "fulanito@univalle.com",
+      "id": "1"
+    },
+    {
+      "nombre": "Carlas",
+      "email": "alfredopetalta417@gmail.com",
+      "id": "aNeMammjIiA"
+    }
+  ],
+  "productos": [
+    {
+      "nombre": "Comida para perros",
+      "precio": "25.99",
+      "description": "Alimento completo y equilibrado para perros adultos",
+      "id": "1"
+    },
+    {
+      "nombre": "Collar",
+      "precio": "4,99",
+      "description": "Collar fachero",
+      "id": "hG3WHcTxIxc"
+    },
+    {
+      "nombre": "Correa",
+      "precio": "2o",
+      "description": "Correa para cactus",
+      "id": "kPz7RzqBScE"
+    },
+    {
+      "nombre": "Correa",
+      "precio": "20",
+      "description": "20 mts",
+      "id": "GbDz4-XPI2A"
+    }
+  ],
+  "mascotas": [
+    {
+      "nombre": "Firulais",
+      "tipo": "Perro",
+      "raza": "Labrador",
+      "edad": "3",
+      "dueno": "FULANITO",
+      "id": "1"
+    },
+    {
+      "nombre": "Michi",
+      "tipo": "Gato",
+      "raza": "Siamés",
+      "edad": "2",
+      "dueno": "Carlas",
+      "id": "2"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
