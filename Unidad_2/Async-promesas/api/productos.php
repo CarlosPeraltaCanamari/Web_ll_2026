@@ -1,4 +1,4 @@
-<?php 
+<?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
@@ -8,95 +8,89 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit();
 }
 
-//Datos de conexión a la base de datos
-$servername = "localhost";
-$username = "root";
-$password = "";
+
+$servername = "ASUS";
 $dbname = "web_2";
 
-// Crear conexión
-$conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error) {
+try {
+    $conn = new PDO("sqlsrv:Server=$servername;Database=$dbname;TrustServerCertificate=true");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
     http_response_code(500);
-    die(json_encode(["error" => "Error de conexión a la base de datos: " . $conn->connect_error]));
+    die(json_encode(["error" => "Error de conexión a la base de datos: " . $e->getMessage()]));
 }
 
 //Metodos get, post, put, delete
 $method = $_SERVER['REQUEST_METHOD'];
-switch ($method) {
-    case 'GET':
-        $id = $_GET['id'] ?? null;
-        if ($id){
-            $stmt = $conn->prepare("SELECT * FROM productos WHERE id = ?");
-            $stmt->bind_param("s", $id);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $producto = $result->fetch_assoc();
-            echo json_encode($producto);
-        } else {
-            $result = $conn->query("SELECT * FROM productos");
-            $productos = [];
-            while ($row = $result->fetch_assoc()) {
-                $productos[] = $row;
+try {
+    switch ($method) {
+        case 'GET':
+            $id = $_GET['id'] ?? null;
+            if ($id) {
+                $stmt = $conn->prepare("SELECT * FROM productos WHERE id = ?");
+                $stmt->execute([$id]);
+                $producto = $stmt->fetch(PDO::FETCH_ASSOC);
+                echo json_encode($producto ?: ["message" => "Producto no encontrado"]);
+            } else {
+                $stmt = $conn->query("SELECT * FROM productos");
+                $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode($productos);
             }
-            echo json_encode($productos);
-        }
-    break;   
+            break;
 
-    case 'POST':
-        $input = json_decode(file_get_contents("php://input"), true);
-        $id = $input['id'] ?? uniqid();
-        $nombre = $input['nombre'];
-        $precio = $input['precio'];
-        $description = $input['description'];
-        $stmt = $conn->prepare("INSERT INTO productos (id, nombre, precio, description) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $id, $nombre, $precio, $description);
-        if ($stmt->execute()) {
+        case 'POST':
+            $input = json_decode(file_get_contents("php://input"), true);
+            $id = $input['id'] ?? uniqid();
+            $nombre = $input['nombre'] ?? '';
+            $precio = $input['precio'] ?? '';
+            $description = $input['description'] ?? '';
+
+            $stmt = $conn->prepare("INSERT INTO productos (id, nombre, precio, description) VALUES (?, ?, ?, ?)");
+            $stmt->execute([$id, $nombre, $precio, $description]);
+
             http_response_code(201);
             echo json_encode(["message" => "Producto creado exitosamente", "id" => $id]);
-        } else {
-            http_response_code(500);
-            echo json_encode(["error" => "Error al crear el producto: " . $stmt->error]);
-        }
-    break;
+            break;
 
-    case 'PUT':
-        $input = json_decode(file_get_contents("php://input"), true);
-        $id = $input['id'];
-        $nombre = $input['nombre'];
-        $precio = $input['precio'];
-        $description = $input['description'];
-        $stmt = $conn->prepare("UPDATE productos SET nombre = ?, precio = ?, description = ? WHERE id = ?");
-        $stmt->bind_param("ssss", $nombre, $precio, $description, $id);
-        if ($stmt->execute()) {
-            echo json_encode(["message" => "Producto actualizado exitosamente"]);
-        } else {
-            http_response_code(500);
-            echo json_encode(["error" => "Error al actualizar el producto: " . $stmt->error]);
-        }
-    break;
+        case 'PUT':
+            $input = json_decode(file_get_contents("php://input"), true);
+            $id = $input['id'] ?? null;
+            $nombre = $input['nombre'] ?? '';
+            $precio = $input['precio'] ?? '';
+            $description = $input['description'] ?? '';
 
-    case 'DELETE':
-        $id = $_GET['id'] ?? null;
-        if ($id) {
-            $stmt = $conn->prepare("DELETE FROM productos WHERE id = ?");
-            $stmt->bind_param("s", $id);
-            if ($stmt->execute()) {
+            if ($id) {
+                $stmt = $conn->prepare("UPDATE productos SET nombre = ?, precio = ?, description = ? WHERE id = ?");
+                $stmt->execute([$nombre, $precio, $description, $id]);
+                echo json_encode(["message" => "Producto actualizado exitosamente"]);
+            } else {
+                http_response_code(400);
+                echo json_encode(["error" => "ID del producto no proporcionado"]);
+            }
+            break;
+
+        case 'DELETE':
+            $id = $_GET['id'] ?? null;
+            if ($id) {
+                $stmt = $conn->prepare("DELETE FROM productos WHERE id = ?");
+                $stmt->execute([$id]);
                 echo json_encode(["message" => "Producto eliminado exitosamente"]);
             } else {
-                http_response_code(500);
-                echo json_encode(["error" => "Error al eliminar el producto: " . $stmt->error]);
+                http_response_code(400);
+                echo json_encode(["error" => "ID del producto no proporcionado"]);
             }
-        } else {
-            http_response_code(400);
-            echo json_encode(["error" => "ID del producto no proporcionado"]);
-        }
-    break;
+            break;
 
-    default:
-        http_response_code(405);
-        echo json_encode(["error" => "Método no permitido"]);
+        default:
+            http_response_code(405);
+            echo json_encode(["error" => "Método no permitido"]);
+    }
+} catch (PDOException $e) {
+    http_response_code(500);
+    echo json_encode(["error" => "Error en la consulta: " . $e->getMessage()]);
 }
-$conn->close();
+
+// Cerrar conexión
+$conn = null;
 ?>

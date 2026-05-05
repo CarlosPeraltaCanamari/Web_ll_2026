@@ -14,7 +14,6 @@ $dbname = "web_2";
 
 // Crear conexión usando Autenticación de Windows
 try {
-    // Al no pasar usuario y contraseña, PDO usa la Autenticación de Windows
     $conn = new PDO("sqlsrv:Server=$servername;Database=$dbname;TrustServerCertificate=true");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
@@ -29,14 +28,14 @@ try {
         case 'GET':
             $id = $_GET['id'] ?? null;
             if ($id){
-                $stmt = $conn->prepare("SELECT * FROM mascotas WHERE id = ?");
+                $stmt = $conn->prepare("SELECT * FROM clientes WHERE id = ?");
                 $stmt->execute([$id]);
-                $mascota = $stmt->fetch(PDO::FETCH_ASSOC);
-                echo json_encode($mascota ?: ["message" => "Mascota no encontrada"]);
+                $cliente = $stmt->fetch(PDO::FETCH_ASSOC);
+                echo json_encode($cliente ?: ["message" => "Cliente no encontrado"]);
             } else {
-                $stmt = $conn->query("SELECT * FROM mascotas");
-                $mascotas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                echo json_encode($mascotas);
+                $stmt = $conn->query("SELECT * FROM clientes");
+                $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode($clientes);
             }
         break;   
 
@@ -44,46 +43,44 @@ try {
             $input = json_decode(file_get_contents("php://input"), true);
             $id = $input['id'] ?? uniqid();
             $nombre = $input['nombre'] ?? '';
-            $tipo = $input['tipo'] ?? '';
-            $raza = $input['raza'] ?? '';
-            $edad = $input['edad'] ?? '';
-            $dueno = $input['dueno'] ?? '';
+            $email = $input['email'] ?? '';
+            $telefono = $input['telefono'] ?? null; // Puede venir nulo
+            $direccion = $input['direccion'] ?? null; // Puede venir nulo
             
-            $stmt = $conn->prepare("INSERT INTO mascotas (id, nombre, tipo, raza, edad, dueno) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$id, $nombre, $tipo, $raza, $edad, $dueno]);
+            $stmt = $conn->prepare("INSERT INTO clientes (id, nombre, email, telefono, direccion) VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute([$id, $nombre, $email, $telefono, $direccion]);
             
             http_response_code(201);
-            echo json_encode(["message" => "Mascota creada exitosamente", "id" => $id]);
+            echo json_encode(["message" => "Cliente creado exitosamente", "id" => $id]);
         break;
 
         case 'PUT':
             $input = json_decode(file_get_contents("php://input"), true);
             $id = $input['id'] ?? null;
             $nombre = $input['nombre'] ?? '';
-            $tipo = $input['tipo'] ?? '';
-            $raza = $input['raza'] ?? '';
-            $edad = $input['edad'] ?? '';
-            $dueno = $input['dueno'] ?? '';
+            $email = $input['email'] ?? '';
+            $telefono = $input['telefono'] ?? null;
+            $direccion = $input['direccion'] ?? null;
             
             if ($id) {
-                $stmt = $conn->prepare("UPDATE mascotas SET nombre = ?, tipo = ?, raza = ?, edad = ?, dueno = ? WHERE id = ?");
-                $stmt->execute([$nombre, $tipo, $raza, $edad, $dueno, $id]);
-                echo json_encode(["message" => "Mascota actualizada exitosamente"]);
+                $stmt = $conn->prepare("UPDATE clientes SET nombre = ?, email = ?, telefono = ?, direccion = ? WHERE id = ?");
+                $stmt->execute([$nombre, $email, $telefono, $direccion, $id]);
+                echo json_encode(["message" => "Cliente actualizado exitosamente"]);
             } else {
                 http_response_code(400);
-                echo json_encode(["error" => "ID de la mascota no proporcionado"]);
+                echo json_encode(["error" => "ID del cliente no proporcionado"]);
             }
         break;
 
         case 'DELETE':
             $id = $_GET['id'] ?? null;
             if ($id) {
-                $stmt = $conn->prepare("DELETE FROM mascotas WHERE id = ?");
+                $stmt = $conn->prepare("DELETE FROM clientes WHERE id = ?");
                 $stmt->execute([$id]);
-                echo json_encode(["message" => "Mascota eliminada exitosamente"]);
+                echo json_encode(["message" => "Cliente eliminado exitosamente"]);
             } else {
                 http_response_code(400);
-                echo json_encode(["error" => "ID de la mascota no proporcionado"]);
+                echo json_encode(["error" => "ID del cliente no proporcionado"]);
             }
         break;
 

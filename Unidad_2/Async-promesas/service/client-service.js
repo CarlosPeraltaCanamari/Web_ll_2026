@@ -139,21 +139,12 @@ const cliente = (id) => {
     return fetch(`${API_BASE_URL}?id=${id}`).then((response)=>response.json());
 }*/
 
-const URL_SUPABASE = "https://tqkrmznxbnvmxrxythkp.supabase.co";
-const SUPABASE_KEY = "sb_publishable_DcCgC0-Ps337U0-GXaGnag_HMcEMyZU";
-const table = "clientes";
-const API_URL = `${URL_SUPABASE}/rest/v1/${table}`;
-
-const HEADERS = {
-    'apiKey': SUPABASE_KEY,
-    'Authorization': `Bearer ${SUPABASE_KEY}`,
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
-}
+//---Con Local API PHP y SQL Server---//
+/*const API_URL = "../api/clientes.php";
 
 const request = async(url, option={})=>{
-    const res = await fetch(url,{headers: HEADERS, ...option});
-    const text = await res.text();;
+    const res = await fetch(url, option);
+    const text = await res.text();
     const data = text ? JSON.parse(text) : null;
 
     if(!res.ok){
@@ -165,35 +156,150 @@ const request = async(url, option={})=>{
 
 //GET
 const listar_clientes = () =>{
-    return request(`${API_URL}?select=id,nombre,email`);
+    return request(API_URL);
 }
 
 //Get por id
 const cliente = (id)=>{
-    return request(`${API_URL}?id=eq.${id}&select=id,nombre,email`);
+    return request(`${API_URL}?id=${id}`);
 }
 
 //POST
 const crearCliente = (nombre, email) =>{
     return request(API_URL, {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({nombre, email})
-    }).then(data=>data?.[0]);
+    });
 }
 
-//PATCH
+//PUT (Actualizar)
 const actualizarCliente = (nombre, email, id) =>{
-    return request(`${API_URL}?id=eq.${id}`, {
-        method: 'PATCH',
-        body: JSON.stringify({nombre, email})
-    }).then(data=>data?.[0] ?? Promise.reject(new Error('Cliente no encontrado')));
+    return request(API_URL, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({id, nombre, email})
+    });
 }
 
 //DELETE
 const eliminarCliente = (id) =>{
-    return request(`${API_URL}?id=eq.${id}`, {
+    return request(`${API_URL}?id=${id}`, {
         method: 'DELETE'
-    }).then(data=>data?.[0] ?? Promise.reject(new Error('Cliente no encontrado')));
+    });
+}*/
+
+//---Con Express (localhost:3000)---//
+const BASE_URL = "http://localhost:3000/clientes";
+
+const request = async (url, option = {}) => {
+    const res = await fetch(url, option);
+    const text = await res.text();
+    const data = text ? JSON.parse(text) : null;
+
+    if (!res.ok) {
+        const mensaje = data?.mensaje ?? data?.error ?? text ?? 'Error';
+        throw new Error(mensaje);
+    }
+    return data;
+}
+
+//GET - Listar todos
+const listar_clientes = async () => {
+    try {
+        const data = await request(BASE_URL);
+        console.log(`Se listaron ${data.length} clientes`);
+        return data;
+    } catch (error) {
+        console.error("Error al listar clientes:", error.message);
+        throw error;
+    }
+}
+
+//GET por id
+const cliente = async (id) => {
+    if (!id) {
+        console.error("No se proporcionó un ID para buscar el cliente");
+        throw new Error("ID del cliente es requerido");
+    }
+    try {
+        const data = await request(`${BASE_URL}/${id}`);
+        console.log(`Cliente encontrado: ${data.nombre}`);
+        return data;
+    } catch (error) {
+        console.error(`Error al obtener cliente con ID ${id}:`, error.message);
+        throw error;
+    }
+}
+
+//POST - Crear
+const crearCliente = async (nombre, email) => {
+    if (!nombre || nombre.trim() === '') {
+        console.error("El nombre es obligatorio para registrar un cliente");
+        throw new Error("El nombre es obligatorio");
+    }
+    if (!email || email.trim() === '') {
+        console.error("El email es obligatorio para registrar un cliente");
+        throw new Error("El email es obligatorio");
+    }
+    try {
+        const data = await request(BASE_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nombre, email, id: uuid.v4() })
+        });
+        console.log(`Cliente registrado exitosamente: ${nombre}`);
+        return data;
+    } catch (error) {
+        console.error(`No se pudo registrar el cliente "${nombre}":`, error.message);
+        throw error;
+    }
+}
+
+//PUT - Actualizar
+const actualizarCliente = async (nombre, email, id) => {
+    if (!id) {
+        console.error("No se proporcionó un ID para actualizar");
+        throw new Error("ID del cliente es requerido para actualizar");
+    }
+    if (!nombre || nombre.trim() === '') {
+        console.error("El nombre es obligatorio para actualizar");
+        throw new Error("El nombre es obligatorio");
+    }
+    if (!email || email.trim() === '') {
+        console.error("El email es obligatorio para actualizar");
+        throw new Error("El email es obligatorio");
+    }
+    try {
+        const data = await request(`${BASE_URL}/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nombre, email })
+        });
+        console.log(`Cliente actualizado exitosamente: ${nombre}`);
+        return data;
+    } catch (error) {
+        console.error(`No se pudo actualizar el cliente con ID ${id}:`, error.message);
+        throw error;
+    }
+}
+
+//DELETE - Eliminar
+const eliminarCliente = async (id) => {
+    if (!id) {
+        console.error("No se proporcionó un ID para eliminar");
+        throw new Error("ID del cliente es requerido para eliminar");
+    }
+    try {
+        const data = await request(`${BASE_URL}/${id}`, {
+            method: 'DELETE'
+        });
+        console.log(`Cliente con ID ${id} eliminado exitosamente`);
+        return data;
+    } catch (error) {
+        console.error(`No se pudo eliminar el cliente con ID ${id}:`, error.message);
+        throw error;
+    }
 }
 
 export const clientService = {
