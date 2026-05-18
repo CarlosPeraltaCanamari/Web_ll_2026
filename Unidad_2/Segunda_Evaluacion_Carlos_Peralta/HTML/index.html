@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../STYLES/style.css">
+    <title>Administracion para salas de cine</title>
+</head>
+
+<body>
+    <nav>
+        <h2 class="title-nav">CINE DON PEPE</h2>
+    </nav>
+    <main>
+        <div class="Peliculas">
+            <h2>Peliculas</h2>
+            <select id="pelicula">
+                <option value="">Seleccione una pelicula</option>
+            </select>
+        </div>
+
+        <div class="Horarios">
+            <h3>Horarios</h3>
+            <select id="funcion">
+                <option value="">Seleccione una función</option>
+            </select>
+        </div>
+
+        <div class="Salas Disponibles">
+            <h3>Salas Disponibles</h3>
+            <select id="sala">
+                <option value="">Seleccione una sala</option>
+            </select>
+        </div>
+
+        <div class="Butacas">
+            <h3>Butacas</h3>
+            <select id="butaca">
+                <option value="">Seleccione una butaca</option>
+            </select>
+        </div>
+
+        <div class="Tarifa">
+            <h3>Tarifa</h3>
+            <select id="tarifa">
+                <option value="">Seleccione una tarifa</option>
+                <option value="20">Niño</option>
+                <option value="35">Adulto</option>
+                <option value="20">Adulto mayor</option>
+            </select>
+        </div>
+
+        <div class="Datos">
+            <h1>Datos del cliente</h1>
+            <input type="text" placeholder="Nombre" id="nombre">
+            <input type="text" placeholder="Correo" id="correo">
+            <input type="text" placeholder="Telefono" id="telefono">
+        </div>
+
+        <div class="btn">
+            <input type="button" value="Agregar" id="btn-agregar">
+        </div>
+
+        <div>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Telefono</th>
+                </tr>
+                <tbody id="datos"></tbody>
+
+            </table>
+        </div>
+
+
+    </main>
+    <script type="module" src="../service/client-service.js"></script>
+</body>
+
+</html>

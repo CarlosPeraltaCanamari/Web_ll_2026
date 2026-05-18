@@ -1,0 +1,128 @@
+* {
+    font-family: poppins, sans-serif;
+}
+
+body {
+    background: burlywood;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: poppins;
+}
+
+nav {
+    background-color: white;
+    width: 100%;
+    height: 100px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-nav {
+    padding: 0px 20px 0px 20px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+}
+
+.link-nav {
+    text-decoration: none;
+    list-style: none;
+    color: black;
+    font-size: 18px;
+    padding: 10px 10px 10px 10px;
+}
+
+ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    list-style: none;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.Peliculas {
+    color: white;
+    padding: 20px;
+}
+
+.Horarios {
+    color: white;
+    padding: 20px;
+}
+
+.Salas {
+    color: white;
+    padding: 20px;
+}
+
+.Butacas {
+    color: white;
+    padding: 20px;
+}
+
+.Tarifa {
+    color: white;
+    padding: 20px;
+}
+
+select {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    margin: 10px;
+}
+
+option {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    margin: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px;
+}
+
+.Datos {
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.Datos input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    margin: 10px;
+}
+
+.Datos input[type="submit"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    margin: 10px;
+}
